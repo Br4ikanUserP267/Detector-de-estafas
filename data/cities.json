@@ -1,0 +1,212 @@
+{
+  "cities": [
+    {
+      "id": "cartagena-colombia",
+      "ciudad": "Cartagena, Colombia",
+      "moneda": "COP",
+      "temporadas": {
+        "alta": {
+          "meses_aproximados": [
+            "15 diciembre - 31 enero",
+            "Semana Santa",
+            "junio",
+            "julio",
+            "puentes festivos",
+            "eventos especiales"
+          ],
+          "factor_incremento_promedio": "20% - 50% sobre temporada baja"
+        },
+        "baja": {
+          "meses_aproximados": [
+            "febrero - mayo (excepto Semana Santa)",
+            "agosto - noviembre (excepto festivos)"
+          ],
+          "factor_incremento_promedio": "precio base"
+        }
+      },
+      "servicios_informales": [
+        {
+          "categoria": "playa",
+          "servicio": "Alquiler silla de playa",
+          "temporada_baja": {
+            "precio_min": 20000,
+            "precio_max": 40000
+          },
+          "temporada_alta": {
+            "precio_min": 35000,
+            "precio_max": 80000
+          },
+          "unidad": "por dia",
+          "negociable": true
+        },
+        {
+          "categoria": "playa",
+          "servicio": "Alquiler sombrilla o carpa sencilla",
+          "temporada_baja": {
+            "precio_min": 30000,
+            "precio_max": 60000
+          },
+          "temporada_alta": {
+            "precio_min": 50000,
+            "precio_max": 100000
+          },
+          "unidad": "por dia",
+          "negociable": true
+        },
+        {
+          "categoria": "playa",
+          "servicio": "Masaje informal en playa",
+          "temporada_baja": {
+            "precio_min": 30000,
+            "precio_max": 60000
+          },
+          "temporada_alta": {
+            "precio_min": 50000,
+            "precio_max": 90000
+          },
+          "unidad": "20-30 minutos",
+          "negociable": true
+        },
+        {
+          "categoria": "venta_ambulante",
+          "servicio": "Botella de agua 600ml",
+          "temporada_baja": {
+            "precio_min": 3000,
+            "precio_max": 5000
+          },
+          "temporada_alta": {
+            "precio_min": 4000,
+            "precio_max": 8000
+          },
+          "unidad": "unidad",
+          "negociable": false
+        },
+        {
+          "categoria": "venta_ambulante",
+          "servicio": "Coctel o mojito en playa",
+          "temporada_baja": {
+            "precio_min": 10000,
+            "precio_max": 20000
+          },
+          "temporada_alta": {
+            "precio_min": 15000,
+            "precio_max": 30000
+          },
+          "unidad": "unidad",
+          "negociable": true
+        },
+        {
+          "categoria": "transporte_informal",
+          "servicio": "Mototaxi trayecto corto",
+          "temporada_baja": {
+            "precio_min": 3000,
+            "precio_max": 6000
+          },
+          "temporada_alta": {
+            "precio_min": 5000,
+            "precio_max": 10000
+          },
+          "unidad": "por trayecto urbano corto",
+          "negociable": true
+        },
+        {
+          "categoria": "transporte_informal",
+          "servicio": "Taxi no regulado trayecto corto",
+          "temporada_baja": {
+            "precio_min": 10000,
+            "precio_max": 18000
+          },
+          "temporada_alta": {
+            "precio_min": 15000,
+            "precio_max": 30000
+          },
+          "unidad": "trayecto urbano",
+          "negociable": true
+        },
+        {
+          "categoria": "tours_informales",
+          "servicio": "Tour a pie centro historico",
+          "temporada_baja": {
+            "precio_min": 40000,
+            "precio_max": 60000
+          },
+          "temporada_alta": {
+            "precio_min": 60000,
+            "precio_max": 100000
+          },
+          "unidad": "por persona",
+          "negociable": true
+        },
+        {
+          "categoria": "tours_informales",
+          "servicio": "Lancha informal a islas del Rosario",
+          "temporada_baja": {
+            "precio_min": 70000,
+            "precio_max": 120000
+          },
+          "temporada_alta": {
+            "precio_min": 120000,
+            "precio_max": 200000
+          },
+          "unidad": "por persona",
+          "negociable": true,
+          "nota": "puede variar segun clima, gasolina y demanda"
+        },
+        {
+          "categoria": "servicios_fotografia",
+          "servicio": "Foto con palenquera",
+          "temporada_baja": {
+            "precio_min": 10000,
+            "precio_max": 20000
+          },
+          "temporada_alta": {
+            "precio_min": 15000,
+            "precio_max": 30000
+          },
+          "unidad": "por foto",
+          "negociable": true
+        }
+      ],
+      "ultima_actualizacion_aproximada": "2026-02",
+      "nota_importante": "Precios estimados de mercado informal. Pueden variar segun negociacion, zona especifica (Bocagrande, Centro, Playa Blanca), perfil del turista y situacion economica."
+    },
+    {
+      "id": "cartagena",
+      "ultima_actualizacion_aproximada": "2024-12",
+      "ciudad": "Cartagena",
+      "moneda": "COP",
+      "nota_importante": "Incremento inusual por temporada alta.",
+      "temporadas": {
+        "alta": {
+          "meses_aproximados": [
+            "diciembre"
+          ],
+          "factor_incremento_promedio": "20% sobre temporada baja"
+        },
+        "baja": {
+          "meses_aproximados": [
+            "diciembre"
+          ],
+          "factor_incremento_promedio": "20% sobre temporada baja"
+        }
+      },
+      "servicios_informales": [
+        {
+          "categoria": "Transporte",
+          "servicio": "Taxi aeropuerto",
+          "unidad": "Trayecto",
+          "negociable": true,
+          "nota": "Recargos nocturnos aplican",
+          "temporada_baja": {
+            "precio_min": 50000,
+            "precio_max": 120000
+          },
+          "temporada_alta": {
+            "precio_min": 50000,
+            "precio_max": 120000
+          }
+        }
+      ]
+    }
+  ]
+}

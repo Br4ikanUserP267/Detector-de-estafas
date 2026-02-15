@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<body>
+  <header class="page-header">
+    <div class="page-header__info">
+      <h1>Centro de monitoreo de precios</h1>
+      <p>Supervisa las ciudades, detecta desbalances y responde antes de que impacten al negocio.</p>
+    </div>
+    <div class="page-header__status">
+      <span id="statusChip" class="status-chip status-online">API Online</span>
+      <span class="status-uptime">Pulso <strong id="statusPulse">--:--:--</strong></span>
+    </div>
+  </header>
+</head>
+<body>
+    <section class="panel monitor-panel">
+      <div class="monitor-grid">
+        <article class="metric-card">
+          <h2>Ciudades monitoreadas</h2>
+          <p id="metricCities" class="metric-value">0</p>
+          <p id="metricAvgServices" class="metric-detail">Promedio de servicios 0.0</p>
+        </article>
+        <article class="metric-card">
+          <h2>Servicios registrados</h2>
+          <p id="metricServices" class="metric-value">0</p>
+          <p id="metricTopCity" class="metric-detail">Sin ciudad destacada</p>
+        </article>
+        <article class="metric-card">
+          <h2>Última sincronización</h2>
+          <p id="metricLastSync" class="metric-value">--:--</p>
+          <p id="metricLatestUpdate" class="metric-detail">Última actualización global sin datos</p>
+        </article>
+      </div>
+    </section>
+
+    <div id="message" class="message" hidden></div>
+    <h1>Panel de precios informales</h1>
+    <p>Administra ciudades, temporadas y servicios para exponer precios via API.</p>
+  </header>
+
+  <main class="layout">
+    <div id="message" class="message" hidden></div>
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Ciudades registradas</h2>
+        <button id="refreshButton" type="button">Actualizar</button>
+      </div>
+      <div id="cityList" class="city-list"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2 id="formTitle">Nueva ciudad</h2>
+        <button id="resetButton" type="button">Limpiar</button>
+      </div>
+      <form id="cityForm" class="city-form">
+        <input type="hidden" id="cityId" name="cityId">
+
+        <div class="field">
+          <label for="ciudad">Ciudad</label>
+          <input id="ciudad" name="ciudad" type="text" required>
+        </div>
+
+        <div class="field">
+          <label for="moneda">Moneda</label>
+          <input id="moneda" name="moneda" type="text" value="COP" required>
+        </div>
+
+        <div class="field">
+          <label for="altaMeses">Temporada alta - meses aproximados</label>
+          <textarea id="altaMeses" name="altaMeses" rows="2" placeholder="Separar por coma o salto de linea"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="altaFactor">Temporada alta - factor promedio</label>
+          <input id="altaFactor" name="altaFactor" type="text" placeholder="Ej: 20% - 50% sobre temporada baja">
+        </div>
+
+        <div class="field">
+          <label for="bajaMeses">Temporada baja - meses aproximados</label>
+          <textarea id="bajaMeses" name="bajaMeses" rows="2" placeholder="Separar por coma o salto de linea"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="bajaFactor">Temporada baja - factor promedio</label>
+          <input id="bajaFactor" name="bajaFactor" type="text" placeholder="Ej: precio base">
+        </div>
+
+        <div class="field">
+          <label for="ultimaActualizacion">Ultima actualizacion (AAAA-MM)</label>
+          <input id="ultimaActualizacion" name="ultimaActualizacion" type="month">
+        </div>
+
+        <div class="field">
+          <label for="notaImportante">Nota importante</label>
+          <textarea id="notaImportante" name="notaImportante" rows="3" placeholder="Observaciones clave"></textarea>
+        </div>
+
+        <div class="field">
+          <div class="services-header">
+            <label>Servicios informales</label>
+            <button id="addService" type="button">Agregar servicio</button>
+          </div>
+          <div id="serviceList" class="service-list"></div>
+          <p class="hint">Completa precios en COP. Usa montos enteros sin separadores.</p>
+        </div>
+
+        <div class="actions">
+          <button id="submitButton" type="submit">Guardar</button>
+          <button id="deleteButton" type="button" class="danger" disabled>Eliminar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel activity-panel">
+      <div class="panel-header">
+        <h2>Actividad reciente</h2>
+        <span id="activityTimestamp" class="activity-timestamp">Sin registros</span>
+      </div>
+      <ul id="activityFeed" class="activity-feed"></ul>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <small>API base en <code>/api/cities</code>. Endpoints listos para integrarse con otros sistemas.</small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
