@@ -51,6 +51,10 @@ const validateCityPayload = (payload) => {
   if (!Array.isArray(payload.servicios_informales)) {
     throw makeError(400, 'El campo "servicios_informales" debe ser una lista');
   }
+
+  if (payload.pais !== undefined && typeof payload.pais !== 'string') {
+    throw makeError(400, 'El campo "pais" debe ser texto');
+  }
 };
 
 const getCities = async () => {
@@ -81,10 +85,18 @@ const createCity = async (payload) => {
   }
 
   const now = new Date().toISOString().slice(0, 7);
+  const sanitized = { ...payload };
+  if (typeof sanitized.pais === 'string') {
+    sanitized.pais = sanitized.pais.trim();
+    if (!sanitized.pais) {
+      delete sanitized.pais;
+    }
+  }
+
   const newCity = {
     id: cityId,
     ultima_actualizacion_aproximada: payload.ultima_actualizacion_aproximada || now,
-    ...payload
+    ...sanitized
   };
 
   store.cities.push(newCity);
@@ -108,6 +120,14 @@ const updateCity = async (idOrName, payload) => {
 
   const current = store.cities[index];
   const merged = { ...current, ...payload };
+
+  if (typeof merged.pais === 'string') {
+    const trimmed = merged.pais.trim();
+    merged.pais = trimmed || undefined;
+    if (!trimmed) {
+      delete merged.pais;
+    }
+  }
 
   if (payload.ciudad) {
     const newId = slugify(payload.ciudad);

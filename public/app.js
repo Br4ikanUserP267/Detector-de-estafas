@@ -8,6 +8,7 @@
   const messageEl = document.getElementById('message');
   const cityForm = document.getElementById('cityForm');
   const serviceListEl = document.getElementById('serviceList');
+  const paisInput = document.getElementById('pais');
   const metricCitiesEl = document.getElementById('metricCities');
   const metricAvgServicesEl = document.getElementById('metricAvgServices');
   const metricServicesEl = document.getElementById('metricServices');
@@ -146,7 +147,8 @@
     metricServicesEl.textContent = totalServices;
     if (metricTopCityEl) {
       if (topCity && topCity.servicios_informales?.length) {
-        metricTopCityEl.textContent = `${topCity.ciudad} lidera con ${topCity.servicios_informales.length}`;
+        const topLabel = topCity.pais ? `${topCity.ciudad}, ${topCity.pais}` : topCity.ciudad;
+        metricTopCityEl.textContent = `${topLabel} lidera con ${topCity.servicios_informales.length}`;
       } else {
         metricTopCityEl.textContent = 'Sin ciudad destacada';
       }
@@ -173,10 +175,11 @@
         .map((city) => {
           const serviceCount = city.servicios_informales?.length || 0;
           const updateLabel = formatMonthLabel(city.ultima_actualizacion_aproximada);
+          const locationLabel = city.pais ? `${city.ciudad}, ${city.pais}` : city.ciudad;
           return `
             <li class="activity-item">
               <div>
-                <strong>${city.ciudad}</strong>
+                <strong>${locationLabel}</strong>
                 <span>${serviceCount} servicios</span>
               </div>
               <span>${updateLabel}</span>
@@ -302,6 +305,9 @@
   const fillForm = (city) => {
     document.getElementById('cityId').value = city.id;
     document.getElementById('ciudad').value = city.ciudad || '';
+    if (paisInput) {
+      paisInput.value = city.pais || '';
+    }
     document.getElementById('moneda').value = city.moneda || '';
 
     const alta = city.temporadas?.alta || {};
@@ -331,6 +337,9 @@
   const resetForm = () => {
     cityForm.reset();
     document.getElementById('cityId').value = '';
+    if (paisInput) {
+      paisInput.value = '';
+    }
     serviceListEl.innerHTML = '';
     serviceListEl.appendChild(createServiceItem());
     formTitle.textContent = 'Nueva ciudad';
@@ -364,10 +373,11 @@
       const updateLabel = formatMonthLabel(updated);
       const statusTagClass =
         status.tone === 'danger' ? 'tag danger' : status.tone === 'warning' ? 'tag warning' : 'tag';
+      const locationLabel = city.pais ? `${city.ciudad}, ${city.pais}` : city.ciudad;
 
       card.innerHTML = `
         <div class="city-card__header">
-          <h3>${city.ciudad}</h3>
+          <h3>${locationLabel}</h3>
           <span class="${statusTagClass}">${status.label}</span>
         </div>
         <div class="city-card__meta">
@@ -416,6 +426,7 @@
 
       const payload = {
         ciudad: document.getElementById('ciudad').value.trim(),
+        pais: paisInput ? paisInput.value.trim() : '',
         moneda: document.getElementById('moneda').value.trim(),
         temporadas: {
           alta: {
@@ -444,6 +455,10 @@
       const hasBajaFactor = payload.temporadas.baja.factor_incremento_promedio;
       if (!hasBajaFactor) {
         delete payload.temporadas.baja.factor_incremento_promedio;
+      }
+
+      if (!payload.pais) {
+        delete payload.pais;
       }
 
       const method = activeCityId ? 'PUT' : 'POST';

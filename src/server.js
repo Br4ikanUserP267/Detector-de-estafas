@@ -76,6 +76,7 @@ const swaggerDefinition = {
         properties: {
           id: { type: 'string', example: 'cartagena' },
           ciudad: { type: 'string', example: 'Cartagena' },
+          pais: { type: 'string', example: 'Colombia' },
           moneda: { type: 'string', example: 'COP' },
           ultima_actualizacion_aproximada: { type: 'string', example: '2024-12' },
           nota_importante: { type: 'string', example: 'Incremento inusual por temporada alta.' },

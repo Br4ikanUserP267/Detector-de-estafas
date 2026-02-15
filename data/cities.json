@@ -3,6 +3,7 @@
     {
       "id": "cartagena-colombia",
       "ciudad": "Cartagena, Colombia",
+      "pais": "Colombia",
       "moneda": "COP",
       "temporadas": {
         "alta": {
@@ -174,6 +175,7 @@
       "id": "cartagena",
       "ultima_actualizacion_aproximada": "2024-12",
       "ciudad": "Cartagena",
+      "pais": "Colombia",
       "moneda": "COP",
       "nota_importante": "Incremento inusual por temporada alta.",
       "temporadas": {
